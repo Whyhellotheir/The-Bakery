@@ -1,7 +1,20 @@
 from flask import Flask, request, render_template, flash, url_for, redirect, get_flashed_messages
-import json
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://Jayce:Happen22%40@localhost/bakery'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userName = db.Column(db.String(100), nullable=False)
+    itemName = db.Column(db.String(100), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+
+# with app.app_context():
+#     db.create_all()
 
 #renders the html form
 @app.route('/')
@@ -17,7 +30,6 @@ def place_order():
 def about_me():
     return render_template('aboutMe.html')
 
-
 # handle form submission and turning inputs to json
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -25,25 +37,9 @@ def submit():
     userName = request.form.get("userName")
     itemName = request.form.get("itemName")
 
-    order_name = {
-        "userName": userName,
-        "itemName": itemName,
-        "amount": amount
-    }
-
-        # Load existing orders
-    try:
-        with open('orders.json', 'r') as f:
-            orders = json.load(f)
-    except FileNotFoundError:
-        orders = []  # If file doesn't exist, start with an empty list
-
-    # Append the new order
-    orders.append(order_name)
-
-    # Save all orders back to the JSON file
-    with open('orders.json', 'w') as f:
-        json.dump(orders, f, indent=4)  # Pretty-print the JSON
+    new_order = Order(userName=userName, itemName=itemName, amount=amount)
+    db.session.add(new_order)
+    db.session.commit()
 
     return f"Thank you {userName}, for your purchase!"
 
