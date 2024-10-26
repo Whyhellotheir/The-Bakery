@@ -1,0 +1,50 @@
+.top{
+    text-align: center;
+    font-family: courier;
+    font-weight: 100;
+    font-size: 50px;
+}
+
+.aboutMe{
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    border: 3px solid rgba(45, 45, 45, 0.636);
+    color: black;
+    background-color: white;
+    font-size: 50px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.aboutMe:hover{
+    background-color: rgba(45, 45, 45, 0.636);
+    color: white;
+}
+
+.placeOrder{
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    border: 3px solid rgba(45, 45, 45, 0.636);
+    color: black;
+    background-color: white;
+    font-size: 50px;
+    padding: 10px 20px;
+    margin: 20px;
+    
+}
+
+.placeOrder:hover{
+    background-color: rgba(45, 45, 45, 0.636);
+    color: white;
+}
+
+/* To center both buttons */
+.center {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content:center;
+    align-items: center;
+    height: 100vh; /* Takes the full height of the viewport */
+    margin: 0;
+}

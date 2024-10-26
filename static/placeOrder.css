@@ -1,0 +1,30 @@
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.itemDesc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    font-size: 30px;
+}
+
+.custom-button{
+    background-color: #ffa43c; /* Change to your desired color */
+    color: white; /* Change text color */
+    border: none; /* Remove default border */
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.custom-button:hover {
+    background-color: #f3801c; /* Change color on hover */
+}
+
